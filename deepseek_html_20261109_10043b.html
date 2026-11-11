@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Разбор кода</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    background: #1e1e1e;
+    color: #d4d4d4;
+    padding: 24px;
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .container { max-width: 1200px; margin: 0 auto; }
+  h1 { color: #569cd6; font-size: 22px; margin: 0 0 20px; }
+  details { margin: 3px 0; }
+  summary {
+    cursor: pointer;
+    padding: 6px 14px;
+    background: #2d2d2d;
+    border-left: 3px solid #569cd6;
+    border-radius: 3px;
+    list-style: none;
+    user-select: none;
+    white-space: pre;
+    font-family: inherit;
+    font-size: inherit;
+    color: #d4d4d4;
+    transition: background 0.15s;
+  }
+  summary:hover { background: #37373d; }
+  summary::-webkit-details-marker { display: none; }
+  summary::before { content: "▶ "; color: #569cd6; font-size: 10px; }
+  details[open] summary::before { content: "▼ "; }
+  details[open] summary { background: #04395e; border-left-color: #4ec9b0; border-radius: 3px 3px 0 0; }
+  .explanation {
+    padding: 12px 18px 12px 34px;
+    background: #252526;
+    border-left: 3px solid #4ec9b0;
+    border-radius: 0 0 3px 3px;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: #cccccc;
+    white-space: pre-wrap;
+  }
+  .line {
+    padding: 6px 14px;
+    white-space: pre;
+    color: #d4d4d4;
+    border-left: 3px solid transparent;
+  }
+  .section-header {
+    color: #dcdcaa;
+    padding: 16px 14px 10px;
+    font-weight: bold;
+    font-size: 16px;
+    border-left: 3px solid #dcdcaa;
+    margin: 14px 0 4px;
+    background: #2d2d2d;
+    border-radius: 3px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Разбор кода</h1>
+
+<div class="line">&lt;script&gt;</div>
+
+<details>
+<summary>    function showList(id, items) {</summary>
+<div class="explanation">showList получает:
+- id — название HTML-идентификатора, куда нужно вывести данные;
+- items — массив данных, который нужно вывести.</div>
+</details>
+
+<details>
+<summary>      let html = "";</summary>
+<div class="explanation">переменная</div>
+</details>
+
+<details>
+<summary>      for (let i = 0;</summary>
+<div class="explanation">let — создаёт переменную.
+i — название переменной-счётчика.
+= — присваивание.
+0 — начальное значение.</div>
+</details>
+
+<details>
+<summary>           i &lt; items.length;</summary>
+<div class="explanation">- i — текущий индекс.
+- &lt; — оператор сравнения «меньше».
+- items — массив, полученный функцией.
+- . — обращение к свойству объекта или массива.
+- length — встроенное свойство, возвращающее количество элементов массива.
+Условие проверяет, меньше ли текущий индекс количества элементов.
+Пока условие истинно, цикл продолжает выполняться.</div>
+</details>
+
+<details>
+<summary>           i++)</summary>
+<div class="explanation">После каждого повторения цикла счётчик увеличивается на единицу.</div>
+</details>
+
+<div class="line">      {</div>
+
+<details>
+<summary>        html = html + "&lt;li&gt;" + items[i] + "&lt;/li&gt;";</summary>
+<div class="explanation">То есть программа берёт текущий элемент массива и помещает его между HTML-тегами &lt;li&gt; и &lt;/li&gt;.
+Переменная html постепенно накапливает сформированные пункты списка.
+Разбираем слева направо:
+- html — переменная, в которую записывается результат.
+- = — оператор присваивания.
+- html — уже накопленное содержимое переменной.
+- + — оператор объединения строк.
+- "&lt;li&gt;" — текст, представляющий открывающий HTML-тег элемента списка.
+- + — объединяет следующую часть.
+- items[i] — текущий элемент массива items.
+- + — объединяет следующую часть.
+- "&lt;/li&gt;" — текст, представляющий закрывающий HTML-тег элемента списка.
+- ; — завершает инструкцию.</div>
+</details>
+
+<div class="line">      }</div>
+
+<details>
+<summary>      document.getElementById(id).innerHTML = html;</summary>
+<div class="explanation">Эта строка переносит сформированный список в HTML-документ.
+getElementById — встроенный метод DOM API, который ищет HTML-элемент по его идентификатору
+(id) — аргумент метода. Сюда передаётся значение параметра id.
+— обращение к следующему свойству найденного элемента.
+innerHTML — свойство, которое позволяет читать или изменять HTML-содержимое элемента.
+= — присваивание.
+html — переменная с уже сформированным HTML-кодом.</div>
+</details>
+
+<details>
+<summary>      document.getElementById(id + "Count").innerHTML = items.length;</summary>
+<div class="explanation">Эта строка отвечает за отображение количества найденных элементов.
+- getElementById — поиск HTML-элемента по идентификатору.
+- ( — начало аргумента.
+- id — параметр функции.
+- + — объединение строк.
+- "Count" — текст, который добавляется к значению id.
+- ) — завершение аргумента.
+- . — обращение к свойству найденного элемента.
+- innerHTML — содержимое HTML-элемента.
+- = — присваивание.
+- items.length — количество элементов массива.
+- ; — завершение инструкции.
+Обрати внимание: id + "Count" позволяет получить идентификатор счётчика на основании идентификатора списка.</div>
+</details>
+
+<div class="line">    }</div>
+
+<div class="line">    </div>
+
+<div class="line">    function findAll() {</div>
+
+<div class="line">    </div>
+
+<details>
+<summary>      let text = document.getElementById("text").value;</summary>
+<div class="explanation">getElementById — поиск элемента по идентификатору.</div>
+</details>
+
+<details>
+<summary>      let phones = text.match(/(\+998\s?)?\(?71\)?[\s-]?\d{3}[\s-]?\d{2}[\s-]?\d{2}/g) || [];</summary>
+<div class="explanation">Разбираем по частям.
+- let — создание переменной.
+- phones — название переменной.
+- = — присваивание.
+- text — исходный текст, полученный из поля textarea.
+- . — обращение к методу строки.
+- match — встроенный метод JavaScript, который ищет совпадения с регулярным выражением.
+- ( — начало аргумента метода.
+- / — начало регулярного выражения.</div>
+</details>
+
+<details>
+<summary>      let plates1 = text.match(/\b01\s?[A-Z]\s?\d{3}\s?[A-Z]{2}\b/gi) || [];</summary>
+<div class="explanation">Фрагмент	Значение
+\b	Граница слова
+01	Цифры 01
+\s?	Необязательный пробел
+[A-Z]	Одна английская заглавная буква
+\s?	Необязательный пробел
+\d{3}	Три цифры
+\s?	Необязательный пробел
+[A-Z]{2}	Две английские заглавные буквы
+\b	Граница слова</div>
+</details>
+
+<details>
+<summary>      let plates2 = text.match(/\b01\s?\d{3}\s?[A-Z]{3}\b/gi) || [];</summary>
+<div class="explanation">Фрагмент	Значение
+\b	Граница слова
+01	Цифры 01
+\s?	Необязательный пробел
+\d{3}	Три цифры
+\s?	Необязательный пробел
+[A-Z]{3}	Три английские буквы
+\b	Граница слова</div>
+</details>
+
+<details>
+<summary>      let plates = plates1.concat(plates2);</summary>
+<div class="explanation">Разбираем:
+- let — создание переменной.
+- plates — название новой переменной.
+- = — присваивание.
+- plates1 — первый массив автомобильных номеров.
+- . — обращение к методу массива.
+- concat — встроенный метод JavaScript для объединения массивов.
+- (plates2) — второй массив, который нужно присоединить.
+- ; — завершение инструкции.
+Результат: создаётся один массив plates, в который попадают все номера из plates1 и plates2.</div>
+</details>
+
+<details>
+<summary>      let emails = text.match(/[\w.-]+@[\w-]+(?:\.[\w-]+)+/g) || [];</summary>
+<div class="explanation">/ — конец регулярного выражения.
+g — поиск всех совпадений.
+i — игнорирование регистра букв.
+) — закрытие вызова match().
+|| — логический оператор ИЛИ.
+[ ] — пустой массив на случай отсутствия совпадений.
+; — завершение инструкции.</div>
+</details>
+
+<div class="section-header">Часть 4. Обработка телефонных номеров</div>
+
+<details>
+<summary>      for (let i = 0; i &lt; phones.length; i++)</summary>
+<div class="explanation">Разбираем:
+for — ключевое слово JavaScript для создания цикла.
+( — начало параметров цикла.
+let — создание переменной.
+i — счётчик цикла.
+= — присваивание.
+0 — начальное значение счётчика.
+; — разделяет части цикла.
+i &lt; phones.length — условие продолжения цикла.
+&lt; — оператор сравнения «меньше».
+phones — массив телефонов.
+. — обращение к свойству.
+length — количество элементов массива.
+; — разделяет части цикла.
+i++ — увеличение счётчика на единицу.
+) — конец параметров цикла.
+{ — начало тела цикла.
+Цикл будет последовательно обрабатывать каждый найденный телефон.</div>
+</details>
+
+<div class="line">      {</div>
+
+<details>
+<summary>        let digits = phones[i].replace(/\D/g, "");</summary>
+<div class="explanation">Разбираем:
+- let — создание переменной.
+- digits — название переменной.
+- = — присваивание.
+- phones[i] — текущий телефон из массива.
+- . — обращение к методу строки.
+- replace — встроенный метод JavaScript для замены части строки.
+- ( — начало параметров метода.
+- / — начало регулярного выражения.
+- \D — любой символ, который не является цифрой.
+- g — поиск всех таких символов.
+- / — конец регулярного выражения.
+- , — разделитель параметров метода.
+- "" — пустая строка, на которую заменяются найденные символы.
+- ) — завершение вызова метода.
+- ; — завершение инструкции.
+Результат: из текущего телефона удаляются все символы, кроме цифр.
+Полученная строка записывается в digits.</div>
+</details>
+
+<details>
+<summary>        phones[i] = "+998" + digits.slice(-9);</summary>
+<div class="explanation">Разбираем:
+- phones[i] — текущий элемент массива телефонов.
+- = — присваивание нового значения элементу массива.
+- "+998" — текстовый код страны, который добавляется в начало.
+- + — оператор объединения строк.
+- digits — переменная, содержащая только цифры.
+- . — обращение к методу строки.
+- slice — встроенный метод, возвращающий часть строки.
+- ( — начало аргумента.
+- -9 — указание взять последние девять символов.
+- ) — конец вызова метода.
+- ; — завершение инструкции.
+Результат: номер записывается в массив phones в едином формате: +998 и последние девять цифр.</div>
+</details>
+
+<div class="line">      }</div>
+
+<details>
+<summary>      for (let i = 0; i &lt; plates.length; i++)</summary>
+<div class="explanation">Создаётся второй цикл for.
+Он работает аналогично предыдущему, но теперь перебирает массив plates.
+Разбираем:
+- for — цикл.
+- ( — начало параметров.
+- let i = 0 — создание счётчика с начальным значением 0.
+- ; — разделитель.
+- i &lt; plates.length — условие продолжения цикла.
+- ; — разделитель.
+- i++ — увеличение счётчика на единицу.
+- ) — конец параметров.
+- { — начало тела цикла.</div>
+</details>
+
+<div class="line">      {</div>
+
+<details>
+<summary>        plates[i] = plates[i].replace(/\s/g, "").toUpperCase();</summary>
+<div class="explanation">Это строка, которая одновременно удаляет пробелы и меняет регистр букв.
+Разбираем:
+- plates[i] — текущий автомобильный номер из массива.
+- = — присваивание нового значения.
+- plates[i] — исходное значение этого элемента.
+- . — обращение к методу.
+- replace — встроенный метод замены символов.
+- ( — начало параметров.
+- / — начало регулярного выражения.
+- \s — любой пробельный символ.
+- g — найти все пробельные символы.
+- / — конец регулярного выражения.
+- , — разделитель параметров.
+- "" — пустая строка, которой заменяются пробелы.
+- ) — конец вызова replace().
+Далее:
+- . — обращение к следующему методу.
+- toUpperCase — встроенный метод JavaScript, преобразующий все буквы строки в верхний регистр.
+- () — вызов метода без параметров.
+- ; — завершение инструкции.
+Результат: пробелы удаляются, все буквы становятся заглавными, а новое значение записывается обратно в массив plates.</div>
+</details>
+
+<div class="line">      }</div>
+
+<div class="line">      showList("phones", phones);</div>
+<div class="line">      showList("plates", plates);</div>
+<div class="line">      showList("emails", emails);</div>
+
+<div class="line">    }</div>
+
+<div class="line">    findAll();</div>
+
+</div>
+</body>
+</html>
